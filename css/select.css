@@ -1,0 +1,95 @@
+/* Create by Yexiaoyi on 2014-10-28 */
+
+.selects-wrapper{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-color: #ffffff;
+    z-index: -999;
+    /*display: none;*/
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+}
+.selects-wrapper.show{
+    z-index: 999;
+    /*display: block;*/
+    -webkit-transition: all 400ms;
+    -moz-transition: all 400ms;
+    -ms-transition: all 400ms;
+    -o-transition: all 400ms;
+    transition: all 400ms;
+
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+}
+.selects-col{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+.selects-col ul{
+    position: absolute;
+    width: 90%;
+    padding: 45px 0 40px 3px;
+}
+.selects-col li{
+    line-height: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-right: 1px solid #cccccc;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 5px;
+}
+.selects-col li.current{
+    border: 1px solid #cccccc;
+    border-right: none;
+}
+.selects-col.last-col li{
+    border: none;
+}
+.selects-col.last-col li.current{
+    border: 1px solid #cccccc;
+}
+.selects-wrapper li{
+    line-height: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-right: 1px solid #cccccc;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 5px;
+    font-size: 18px;
+}
+.selects-title{
+    position: relative;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    border-bottom: 1px solid #16a1a4;
+    font-size: 18px;
+    background-color: #ffffff;
+}
+.selects-title a{
+    display: block;
+    position: absolute;
+    top: 0;
+    font-size: 15px;
+    color: #16a1a4;
+}
+.selects-confirm{
+    right: 10px;
+}
+.selects-cancel{
+    left: 10px;
+}

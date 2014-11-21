@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>我的</title>
+    <!--viewport-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <!--兼容新配置-->
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" />
+
+    <!--移动浏览器浏览器下全屏显示设置-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+
+    <!--<link rel="apple-touch-icon" sizes="114x114" href="images/fav.png" />-->
+
+    <!--stylesheets-->
+    <!--<link rel="stylesheet" href="css/reset.css"/>-->
+    <!--<link rel="stylesheet" href="css/base.css"/>-->
+    <!--<link rel="stylesheet" href="css/main.css"/>-->
+    <!--<link rel="stylesheet" href="css/select.css"/>-->
+
+    <!--<link rel="stylesheet" href="libs/core.min.css"/>-->
+
+</head>
+<body>
+<div class="panels-box">
+    <div id="bg" style="width: 100px; height: 100px; background-color: #cccccc;">
+
+    </div>
+    <input type="file" id="photo" accept="video/*" style="width: 100px; height: 100px;  display: block;" />
+    <!--&lt;!&ndash;主视图 start&ndash;&gt;-->
+    <!--<div class="page-view main-view">-->
+
+    <!--</div>-->
+    <!--&lt;!&ndash;主视图 end&ndash;&gt;-->
+
+    <!--&lt;!&ndash;关注视图 start&ndash;&gt;-->
+    <!--<div class="page-view main-view grade-2">-->
+
+    <!--</div>-->
+    <!--&lt;!&ndash;关注视图 end&ndash;&gt;-->
+
+    <!--&lt;!&ndash;关注视图 start&ndash;&gt;-->
+    <!--<div class="page-view main-view grade-2">-->
+
+    <!--</div>-->
+    <!--&lt;!&ndash;关注视图 end&ndash;&gt;-->
+
+</div>
+
+
+
+<script src="js/vendor/zepto.min.js"></script>
+<!--&lt;!&ndash;<script src="js/vendor/touch.js"></script>&ndash;&gt;-->
+<!--<script src="js/vendor/underscore.min.js"></script>-->
+<!--<script src="js/vendor/backbone.min.js"></script>-->
+<!--<script src="js/vendor/iscroll-lite.min.js"></script>-->
+<!--&lt;!&ndash;<script src="js/select.js"></script>&ndash;&gt;-->
+<!--<script src="js/base.js"></script>-->
+<!--<script src="js/templates.js"></script>-->
+<!--<script src="js/model.js"></script>-->
+<!--<script src="js/view.js"></script>-->
+<!--<script src="js/app.js"></script>-->
+<!--&lt;!&ndash;<script src="libs/core.min.js"></script>&ndash;&gt;-->
+<script>
+    var bg = $('#bg'), file = $('#photo');
+    bg.click(function(){
+        file.click();
+    });
+    file.on('change', function(){alert();})
+</script>
+</body>
+</html>

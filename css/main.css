@@ -1,0 +1,454 @@
+/* Create by Yexiaoyi on 2014-10-24 */
+
+
+/*主视图*/
+.auth-section{
+    height: 135px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+    .login-welcome{
+        line-height: 65px;
+    }
+    .btn-login{
+        display: block;
+        margin: 5px auto;
+        clear: both;
+        width: 101px;
+        height: 36px;
+        background: url(../images/btn_login.png) no-repeat;
+    }
+
+    .account-info{
+        position: relative;
+        display: block;
+        height: 75px;
+        padding: 15px 0 0 94px;
+    }
+        .account-photo{
+            position: absolute;
+            left: 15px;
+            top: 13px;
+            border-radius: 32px;
+        }
+        .account-name,
+        .account-phone{
+            display: block;
+            overflow: hidden;
+            line-height: 25px;
+            text-align: left;
+            height: 25px;
+        }
+    .btn-account-info{
+        border-top: 1px solid #d9dee6;
+    }
+        .shop-hint{
+            display: block;
+            float: right;
+            padding-right: 10px;
+        }
+
+/*关注及粉丝视图 */
+    .listitem.follow-item{
+        position: relative;
+        padding: 10px 90px 10px 65px;
+        height: 35px;
+        line-height: 35px;
+    }
+        .friend-photo{
+            position: absolute;
+            border-radius: 18px;
+            left: 15px;
+            top: 10px;
+        }
+        .friend-name{
+            display: block;
+            height: 35px;
+            line-height: 35px;
+            overflow: hidden;
+        }
+        .btn-follow{
+            position: absolute;
+            display: block;
+            right: 15px;
+            top: 15px;
+            width: 63px;
+            height: 25px;
+            background: url(../images/btn_follow.png) no-repeat;
+        }
+        .btn-follow.followed{
+            position: absolute;
+            display: block;
+            right: 15px;
+            top: 15px;
+            width: 63px;
+            height: 25px;
+            background: url(../images/btn_followed.png) no-repeat;
+        }
+
+/*收藏的商家视图*/
+.listitem.favor-shop-item{
+    height: auto;
+}
+.listitem.favor-shop-item a{
+    display: block;
+    position: relative;
+    height: auto;
+    padding: 10px 15px 10px 55px;
+}
+    .listitem.favor-shop-item span{
+        position: relative;
+        display: block;
+        overflow: hidden;
+        line-height: 24px;
+        height: 24px;
+    }
+    .listitem.favor-shop-item .shop-name{
+        line-height: 30px;
+        height: 30px;
+    }
+    .shop-type{
+        position: absolute;
+        top: 14px;
+        left: 15px;
+    }
+    .icon-listitem.shop-broadcast{
+        padding-left: 34px;
+    }
+        .icon-listitem.shop-broadcast:before{
+            left: 0;
+        }
+
+/*个人主页&商户主页*/
+.personal-scroller{
+    margin-top: 265px;
+}
+.personal-bg{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    height: 200px;
+}
+.shop-header{
+    position: relative;
+    top: 0;
+    left: 0;
+}
+    .personal-bg .header{
+        position: relative;
+        background: none;
+    }
+    .personal-photo{
+        position: relative;
+        width: 111px;
+        height: 112px;
+        margin: 4px auto;
+        background: url(../images/photo_bg.png) no-repeat;
+    }
+        .personal-photo img{
+            position: absolute;
+            left: 10.5px;
+            top: 11px;
+            border-radius: 45px;
+        }
+        .personal-photo.shop-photo:after{
+            content: "";
+            position: absolute;
+            display: block;
+            width: 18px;
+            height: 17px;
+            background: url(../images/icons/icon_isshop.png) no-repeat;
+            right: 15px;
+            bottom: 15px;
+        }
+    .btn-update-bg{
+        display: block;
+        width: 100px;
+        height: 28px;
+        margin: 0 auto;
+        background: url(../images/btn_change_bg.png) no-repeat;
+    }
+    .btn-follow-2{
+        display: block;
+        width: 67px;
+        height: 23px;
+        margin: 0 auto;
+        background: url(../images/btn_follow_2.png) no-repeat;
+    }
+.shop-desp{
+    padding: 12px;
+}
+
+    .shop-sales li{
+        margin-top: 10px;
+        border-width: 10px 15px;
+        border-image: url(../images/sale_bg.png) 10 15 stretch;
+    }
+    .shop-sales a{
+        position: relative;
+        display: block;
+        height: 70px;
+        background-color: #ffffff;
+        padding-left: 80px;
+        line-height: 23px;
+        overflow: hidden;
+    }
+        .shop-sales a img {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+.personal-tab{
+    position: relative;
+    margin-top: 200px;
+    height: 65px;
+    border-bottom: 1px solid #e1e5eb;
+}
+    .personal-tab:before{
+        content: "";
+        position:absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 1px;
+        height: 44px;
+        background-color: #e1e5eb;
+    }
+    .personal-tab li{
+        position: relative;
+        width: 50%;
+        float: left;
+        height: 100%;
+        text-align: center;
+    }
+        .personal-tab li.current:after{
+            content: "";
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            background-color: #009a98;
+        }
+        .personal-tab a{
+            position: relative;
+            display: block;
+            padding: 35px 0 10px 0;
+            line-height: 20px;
+        }
+        .personal-tab span{
+            display: block;
+            position: absolute;
+            line-height: 25px;
+            width: 100%;
+            top: 13px;
+            left: 0;
+            text-align: center;
+        }
+        .footprint-waterfall {
+            /*padding-top: 275px;*/
+        }
+        .footprint-waterfall li{
+            border: 1px solid #e1e5eb;
+            background-color: #ffffff;
+        }
+        .footprint-waterfall a{
+            display: block;
+        }
+        .footprint-waterfall img{
+            width: 100%;
+        }
+        .footprint-waterfall span{
+            display: block;
+            width: 100%;
+            padding: 0 5px;
+            line-height: 18px;
+        }
+        .footprint-count{
+            position: relative;
+            padding-left: 20px!important;
+        }
+        .footprint-count:before{
+            content: "";
+            position: absolute;
+            width: 11px;
+            height: 11px;
+            top: 4px;
+            left: 5px;
+            background: url(../images/icons/_icon_footprint.png) no-repeat;
+        }
+        .video-box,
+        .video-box img{
+            position: relative;
+            width: 100%;
+        }
+        .btn-play{
+            display: block;
+            position: absolute;
+            width: 94px;
+            height: 94px;
+            top: 50%;
+            left: 50%;
+            margin:  -42px 0 0 -42px;
+            background: url(../images/btn_play.png) no-repeat;
+        }
+
+
+
+/* Wi-Fi云备份视图 */
+.section-box.wifi-list li{
+    height: 55px;
+}
+.listitem.wifi-item{
+    padding-left: 15px;
+    padding-right: 80px;
+    height: 55px;
+    line-height: 55px;
+}
+.wifi-type{
+    position: absolute;
+    right: 25px;
+    top: 0;
+}
+
+/*访问过的商户热点*/
+.personal-bg.at-wifi-history{
+    position: relative;
+    height: 130px;
+}
+    .at-wifi-history .personal-photo{
+        position: absolute;
+        background: #ffffff;
+        width: 64px;
+        height: 64px;
+        left: 13px;
+        top: 18px;
+        border-radius: 32px;
+    }
+        .at-wifi-history .personal-photo img{
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            border-radius: 28px;
+        }
+.history-list{
+    position: relative;
+}
+    .history-list:before,
+    .history-list ul:before{
+        content: "";
+        display: block;
+        position: absolute;
+        height: 100%;
+        font-size: 0;
+        width: 4px;
+        background: rgba(0,0,0,0.3);
+        top: 0;
+        left: 43px;
+    }
+    .history-list:after{
+        content: "";
+        display: block;
+        position: absolute;
+        height: 12px;
+        font-size: 0;
+        width: 12px;
+        background-color: #ffffff;
+        border-radius: 6px;
+        top: -39px;
+        left: 39px;
+    }
+        .history-list ul:before{
+            content: "";
+            display: block;
+            position: absolute;
+            height: 28px;
+            top: -28px;
+
+        }
+
+        .history-list ul li{
+            position: relative;
+            padding: 20px 15px 10px 70px;
+        }
+            .history-list ul li:before{
+                position: absolute;
+                content: "";
+                font-size: 0;
+                left: 28.5px;
+                top: 15px;
+                width: 32px;
+                height: 41px;
+                background: url(../images/icons/type_icon_catering.png) no-repeat;
+            }
+            .history-list ul li.shopping:before{
+                background: url(../images/icons/type_icon_shopping.png) no-repeat;
+            }
+            .history-list ul li.coffee:before{
+                background: url(../images/icons/type_icon_coffee.png) no-repeat;
+            }
+            .history-list p{
+                display: block;
+                border-width: 3px 3px 3px 9px;
+                border-image: url(../images/history_item_bg.png) 10 15 stretch;
+            }
+                .history-list a{
+                    position: relative;
+                    display: block;
+                    background-color: #ffffff;
+                    height: 85px;
+                }
+                .history-list .shop-name,
+                .history-list .shop-ssid,
+                .history-list .shop-address{
+                    display: block;
+                    padding: 0 10px 0 10px;
+                    height: 25px;
+                    line-height: 25px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+                .history-list .shop-name{
+                    height: 35px;
+                    line-height: 35px;
+                    padding-right: 60px;
+                }
+.history-list .star{
+    position: absolute;
+    right: 5px;
+    top: 20px;
+}
+
+/* 管理我的商家 */
+.shop-totals{
+    height: 65px;
+    line-height: 30px;
+}
+
+    .shop-totals li:before{
+        content: "";
+        position: absolute;
+        right: 10px;
+        bottom: 2px;
+        width: 1px;
+        height: 1px;
+        border-bottom: 5px solid #d9dee6;
+        border-left: 5px solid transparent;
+    }
+    .shop-totals span{
+        line-height: 22px;
+    }
+/*我的商户信息*/
+.btn-to-shop-index{
+    display: block;
+    margin: 10px auto;
+    width: 181px;
+    height: 39px;
+    background: url(../images/btn_shop_index.png) no-repeat;
+}

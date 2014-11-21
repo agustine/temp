@@ -1,0 +1,10 @@
+<% if (user && !user.isActive) { %>
+<a href="javascript:void(0);" title="开通商户"
+   class="listitem icon-listitem icon-info arrow-right">开通商户</a>
+<% } else if (!user) { %>
+<a href="#manageShop" title="管理我的商家"
+   class="listitem icon-listitem icon-info arrow-right">管理我的商家</a>
+<% } else { %>
+<a href="#manageShop" title="管理我的商家"
+   class="listitem icon-listitem icon-info arrow-right">管理我的商家 <span class="shop-hint font-smaller color-red"><%-user.msgCount %>条留言</span></a>
+<% } %>

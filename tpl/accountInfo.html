@@ -1,0 +1,14 @@
+<% if(!user){ %>
+    <span class="login-welcome color-grey">欢迎使用联合连</span>
+    <a href="javascript:void(0)" class="btn-login" title="注册/登录"></a>
+<% } else { %>
+    <a href="#footprint" title="个人信息"
+       class="account-info arrow-right">
+        <img src="images/photo.jpg" width="64px" height="64px"
+             alt="小屁孩_Rain" class="account-photo"/>
+        <span class="account-name font-big"><%-user.account %></span>
+        <span class="account-phone font-smaller color-light-grey"><%-user.phone %></span>
+    </a>
+    <a href="javascript:void(0);" title="编辑资料"
+       class="listitem icon-listitem icon-info btn-account-info arrow-right">编辑资料</a>
+<% } %>

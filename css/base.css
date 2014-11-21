@@ -1,0 +1,664 @@
+/*
+Create by Yexiaoyi on 2014-10-24
+通用样式定义
+*/
+
+/*基本字体属性*/
+html,body{
+    font-family: "HiraginoSansGB-W3", "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+    font-size: 16px;
+    color: #2e2e2e;
+    line-height: 20px;
+}
+
+/* 字体大小 */
+.font-super{
+    font-size: 24px;
+}
+.font-big{
+    font-size: 18px;
+}
+.font-smaller{
+    font-size: 13px;
+}
+.font-small{
+    font-size: 12px;
+}
+
+/*字体颜色*/
+.color-white{
+    color: #ffffff;
+}
+
+.color-highlight{
+    color: #03a3a6;
+}
+
+.color-light-grey{
+    color: #818d9e;
+}
+
+.color-grey{
+    color: #434d57;
+}
+.color-red{
+    color: #ff0000;
+}
+
+
+/* 背景颜色 */
+.bg-header{
+    background-color: #434d57;
+}
+
+.bg-blue{
+    background-color: #66d3bb;
+}
+
+.bg-white{
+    background-color: #ffffff;
+}
+
+.bg-grey{
+    background-color: #f5f5f5;
+}
+
+/*视图容器*/
+.panels-box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+    .page-view{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all 400ms;
+        -moz-transition: all 400ms;
+        -ms-transition: all 400ms;
+        -o-transition: all 400ms;
+        transition: all 400ms;
+        z-index: -1;
+        background-color: #ffffff;
+    }
+    .page-view.grade-2{
+        left: 100%;
+    }
+    .page-view.grade-3{
+        left: 200%;
+    }
+    .page-view.grade-4{
+        left: 300%;
+    }
+    .page-view.grade-5{
+        left: 400%;
+    }
+    .page-view.grade-6{
+        left: 500%;
+    }
+    .page-view.grade-7{
+        left: 600%;
+    }
+    .page-view.show{
+        z-index: 1;
+    }
+    .panels-box.grade-2 .page-view{
+        -webkit-transform: translate3d(-100%, 0, 0);
+        -moz-transform: translate3d(-100%, 0, 0);
+        -ms-transform: translate3d(-100%, 0, 0);
+        -o-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+    .panels-box.grade-3 .page-view{
+        -webkit-transform: translate3d(-200%, 0, 0);
+        -moz-transform: translate3d(-200%, 0, 0);
+        -ms-transform: translate3d(-200%, 0, 0);
+        -o-transform: translate3d(-200%, 0, 0);
+        transform: translate3d(-200%, 0, 0);
+    }
+
+/* 区块 */
+div.section-box{
+    position: relative;
+    display: block;
+
+    margin-bottom: 15px;
+    min-height: 44px;
+    line-height: 44px;
+    background-color: #ffffff;
+    border-top: 1px solid #d9dee6;
+    border-bottom: 1px solid #d9dee6;
+}
+ul.section-box{
+    border-bottom: 1px solid #d9dee6;
+    margin-bottom: 15px;
+}
+div.full-padding,
+li.full-padding,
+p.full-padding{
+    padding: 0 15px;
+}
+.section-box.none-bottom{
+    margin-bottom: 0px;
+}
+.section-box.has-top-margin{
+    margin-top: 15px;
+}
+
+ul.section-box li{
+    background-color: #ffffff;
+    border-top: 1px solid #d9dee6;
+}
+ul.section-box li,
+ul.section-box li a{
+    position: relative;
+    height: 44px;
+    line-height: 44px;
+}
+    .section-box label,
+    .section-box pre{
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 44px;
+    }
+    .section-box label{
+        color: #818d9e;
+        position: absolute;
+        width: 90px;
+        top: 0;
+        left: 15px;
+    }
+    .section-box pre{
+        padding-left: 90px;
+    }
+
+    .section-box.long-title label{
+        color: #818d9e;
+        position: absolute;
+        width: 130px;
+        top: 0;
+        left: 15px;
+    }
+    .section-box.long-title pre{
+        padding-left: 130px;
+    }
+    .section-box.p{
+        line-height: 22px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .section-box h2{
+        line-height: 30px;
+    }
+.division{
+    border-bottom: 1px solid #d9dee6;
+    margin-bottom: 15px;
+}
+
+
+
+a.listitem,
+li.listitem{
+    overflow: hidden;
+    display: block;
+    height: 44px;
+    line-height: 44px;
+    text-align: left;
+}
+
+/*p.full-width{*/
+    /*line-height: 20px;*/
+/*}*/
+
+
+ul.list-view{
+
+}
+ul.list-view li{
+    padding: 15px;
+    border-bottom: 1px solid #d9dee6;
+}
+
+.cols-2{
+    position: relative;
+}
+    .cols-2:after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 1px;
+        height: 80%;
+        background: #d9dee6;
+    }
+    .cols-2 li{
+        position: absolute;
+        height: 80%;
+        width: 50%;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+    .cols-2 li:nth-child(1){
+        left: 0;
+    }
+    .cols-2 li:nth-child(2){
+        right: 0;
+    }
+
+
+
+
+/* icon */
+.btn-icon-left{
+    height: 24px;
+    line-height: 24px;
+    padding-left: 25px;
+}
+.btn-icon-top{
+    padding-top: 25px;
+    text-align: center;
+}
+.btn-icon-left.no-text{
+    font-size: 0;
+}
+
+    .btn-icon:before{
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        width: 24px;
+        height: 24px;
+    }
+    .btn-icon-left:before{
+        left: 0;
+    }
+    .btn-icon-top:before{
+        left: 50%;
+        margin-left: -12px;
+    }
+    .icon-message:before{
+        background: url(../images/icons/icon_message.png) no-repeat;
+    }
+    .icon-setting:before{
+        background: url(../images/icons/icon_setting.png) no-repeat;
+    }
+    .icon-wifi:before{
+        background: url(../images/icons/icon_wifi.png) no-repeat;
+    }
+    .icon-near:before{
+        background: url(../images/icons/icon_near.png) no-repeat;
+    }
+    .icon-group:before{
+        background: url(../images/icons/icon_group.png) no-repeat;
+    }
+    .icon-person:before{
+        background: url(../images/icons/icon_person.png) no-repeat;
+    }
+    .icon-info:before{
+        background: url(../images/icons/icon_info.png) no-repeat;
+    }
+    .icon-wificloud:before{
+        background: url(../images/icons/icon_wificloud.png) no-repeat;
+    }
+    .icon-history:before{
+        background: url(../images/icons/icon_history.png) no-repeat;
+    }
+    .icon-favor:before{
+        background: url(../images/icons/icon_favor.png) no-repeat;
+    }
+    .icon-follow:before{
+        background: url(../images/icons/icon_follow.png) no-repeat;
+    }
+    .icon-follower:before{
+        background: url(../images/icons/icon_follower.png) no-repeat;
+    }
+    .icon-shop:before{
+        background: url(../images/icons/icon_shop.png) no-repeat;
+    }
+    .icon-back:before{
+        background: url(../images/icons/icon_back.png) no-repeat;
+    }
+    .icon-broadcast:before{
+        background: url(../images/icons/icon_broadcast.png) no-repeat;
+    }
+    .icon-option:before{
+        background: url(../images/icons/icon_option.png) no-repeat;
+    }
+    .icon-filter:before{
+        background: url(../images/icons/icon_filter.png) no-repeat;
+    }
+    .icon-lianxiu:before{
+        background: url(../images/icons/icon_lianxiu.png) no-repeat;
+    }
+    .icon-shop-info:before{
+        background: url(../images/icons/icon_shop_info.png) no-repeat;
+    }
+    .icon-mail:before{
+        background: url(../images/icons/icon_mail.png) no-repeat;
+    }
+    .icon-my-wifi:before{
+        background: url(../images/icons/icon_my_wifi.png) no-repeat;
+    }
+    .icon-broadcast-yellow:before{
+        background: url(../images/icons/icon_broadcast_yellow.png) no-repeat;
+    }
+    .icon-image-text:before{
+        background: url(../images/icons/icon_image_text.png) no-repeat;
+    }
+    .icon-group-ad:before{
+        background: url(../images/icons/icon_group_ad.png) no-repeat;
+    }
+    .icon-shop-assignment:before{
+        background: url(../images/icons/icon_shop_assignment.png) no-repeat;
+    }
+    .icon-shop-link:before{
+        background: url(../images/icons/icon_shop_link.png) no-repeat;
+    }
+.icon-listitem{
+    display: block;
+    padding-left: 55px;
+}
+    .icon-listitem:before{
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        margin-top: -12px;
+        width: 24px;
+        height: 24px;
+    }
+
+
+/* header */
+.header {
+    position: relative;
+    line-height: 45px;
+    height: 45px;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 20px;
+    z-index: 9;
+}
+
+    .header a{
+        display: block;
+        position: absolute;
+        height: 24px;
+        line-height: 24px;
+        top: 10px;
+
+        font-size: 15px;
+    }
+
+    .header a.left{
+        left: 15px;
+    }
+
+    .header a.right{
+        right: 15px;
+    }
+
+        .header a .hint{
+            display: block;
+            position: absolute;
+            right: -8px;
+            top: -8px;
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            border-radius: 8px;
+            background-color: #e60000;
+            text-align: center;
+        }
+
+    /*.header a.back{*/
+        /*left: 0;*/
+        /*width: 50px;*/
+        /*background: url(../images/return.png) center center no-repeat;*/
+    /*}*/
+
+
+/* footer */
+.footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 49px;
+    z-index: 9;
+    border-top: 1px solid #acacac;
+}
+    .footer a{
+        position: absolute;
+        top: 4px;
+        height: 40;
+        line-height: 16px;
+        left: 0;
+        width: 100%;
+    }
+    .footer.cols-4 a{
+        width: 25%;
+    }
+    .footer.cols-4 a:nth-child(2){
+        left: 25%;
+    }
+    .footer.cols-4 a:nth-child(3){
+        left: 50%;
+    }
+    .footer.cols-4 a:nth-child(4){
+        left: 75%;
+    }
+
+/*页面滚动容器*/
+.scroll-wrapper{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+    .scroller{
+        position: absolute;
+        padding: 45px 0 50px 0;
+        width: 100%;
+        /*z-index: 1;*/
+        /*-webkit-tap-highlight-color: rgba(0,0,0,0);*/
+        /*width: 100%;*/
+        /*-webkit-transform: translateZ(0);*/
+        /*-moz-transform: translateZ(0);*/
+        /*-ms-transform: translateZ(0);*/
+        /*-o-transform: translateZ(0);*/
+        /*transform: translateZ(0);*/
+        /*-webkit-touch-callout: none;*/
+        /*-webkit-user-select: none;*/
+        /*-moz-user-select: none;*/
+        /*-ms-user-select: none;*/
+        /*user-select: none;*/
+        /*-webkit-text-size-adjust: none;*/
+        /*-moz-text-size-adjust: none;*/
+        /*-ms-text-size-adjust: none;*/
+        /*-o-text-size-adjust: none;*/
+        /*text-size-adjust: none;*/
+    }
+    .scroller.no-header{
+        padding-top: 0;
+    }
+    .scroller.no-footer{
+        padding-bottom: 20px;
+    }
+
+
+/*向右箭头*/
+.arrow-right{
+    position: relative;
+    padding-right: 20px;
+}
+    .arrow-right:after{
+        content: " ";
+        position: absolute;
+        display: block;
+        width: 10px;
+        height: 18px;
+        top: 50%;
+        right: 10px;
+        margin-top: -9px;
+        background: url(../images/arrow_right.png) no-repeat;
+    }
+
+/*星级*/
+.star{
+    display: block;
+    font-size: 0;
+    width: 51px;
+    height: 9px;
+    background: url(../images/star/shop_star1.png) no-repeat;
+}
+.star.star-2{
+    background: url(../images/star/shop_star2.png) no-repeat;
+}
+.star.star-3{
+    background: url(../images/star/shop_star3.png) no-repeat;
+}
+.star.star-4{
+    background: url(../images/star/shop_star4.png) no-repeat;
+}
+.star.star-5{
+    background: url(../images/star/shop_star5.png) no-repeat;
+}
+
+/* 对话框 */
+.dialog-mask{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -999;
+    background: rgba(122,122,122,0.7);
+}
+.dialog-mask.show{
+    z-index: 999;
+}
+    .dialog{
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        border-top: 2px solid #13a8ab;
+        margin-bottom: 0!important;
+        border-bottom: none!important;
+    }
+
+    .dialog.middle{
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 200px;
+        margin: auto!important;
+        border-bottom: 2px solid #13a8ab!important;
+    }
+
+    .dialog.tran-scale{
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+        transform: scale(0);
+    }
+
+    .dialog.tran-scale.show{
+        -webkit-transition: all 400ms;
+        -moz-transition: all 400ms;
+        -ms-transition: all 400ms;
+        -o-transition: all 400ms;
+        transition: all 400ms;
+
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+    }
+    .dialog.tran-up{
+        -webkit-transform: translate3d(0, 100%, 0);
+        -moz-transform: translate3d(0, 100%, 0);
+        -ms-transform: translate3d(0, 100%, 0);
+        -o-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+
+    .dialog.tran-up.show{
+        -webkit-transition: all 400ms;
+        -moz-transition: all 400ms;
+        -ms-transition: all 400ms;
+        -o-transition: all 400ms;
+        transition: all 400ms;
+
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        -o-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+        .dialog.alert-dialog .alert-ok{
+            display: block;
+            width: 100%;
+            line-height: 40px;
+            text-align: center;
+            bottom: 0;
+            border-top: 1px solid #acacac;
+        }
+        .dialog.alert-dialog .alert-message{
+            padding: 0 15px 40px 15px;
+            line-height: 40px;
+        }
+        .dialog a{
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            left: 0;
+            display: block;
+        }
+
+    
+/*text-align*/
+.tleft{
+    text-align: left!important;
+}
+.tcenter{
+    text-align: center!important;
+}
+.tright{
+    text-align: right!important;
+}
+.block{
+    display: block;
+}
+
+/* clearfix */
+.clearfix:before,
+.clearfix:after{
+    content: " ";
+    display: table;
+}
+.clearfix:after{
+    clear: both;
+}
+.clearfix{
+    *zoom: 1;
+}
+
