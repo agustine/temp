@@ -221,8 +221,12 @@ ul.list-view{
 
 }
 ul.list-view li{
+    position: relative;
     padding: 15px;
     border-bottom: 1px solid #d9dee6;
+}
+ul.list-view a{
+    position: relative;
 }
 
 .cols-2{
@@ -518,6 +522,17 @@ ul.list-view li{
         background: url(../images/arrow_right.png) no-repeat;
     }
 
+.btn{
+    display: block;
+    margin: auto;
+    width: 181px!important;
+    height: 39px!important;
+    right: 0;
+    text-align: center;
+    line-height: 38px!important;
+    background: url(../images/btn_bg.png) no-repeat;
+}
+
 /*星级*/
 .star{
     display: block;
@@ -540,99 +555,220 @@ ul.list-view li{
 }
 
 /* 对话框 */
-.dialog-mask{
+/*.dialog-mask{*/
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*z-index: -999;*/
+    /*background: rgba(122,122,122,0.7);*/
+/*}*/
+/*.dialog-mask.show{*/
+    /*z-index: 999;*/
+/*}*/
+    /*.dialog{*/
+        /*position: absolute;*/
+        /*width: 100%;*/
+        /*bottom: 0;*/
+        /*left: 0;*/
+        /*border-top: 2px solid #13a8ab;*/
+        /*margin-bottom: 0!important;*/
+        /*border-bottom: none!important;*/
+    /*}*/
+
+    /*.dialog.middle{*/
+        /*bottom: 0;*/
+        /*left: 0;*/
+        /*right: 0;*/
+        /*top: 0;*/
+        /*height: 200px;*/
+        /*margin: auto!important;*/
+        /*border-bottom: 2px solid #13a8ab!important;*/
+    /*}*/
+
+    /*.dialog.tran-scale{*/
+        /*-webkit-transform: scale(0);*/
+        /*-moz-transform: scale(0);*/
+        /*-ms-transform: scale(0);*/
+        /*-o-transform: scale(0);*/
+        /*transform: scale(0);*/
+    /*}*/
+
+    /*.dialog.tran-scale.show{*/
+        /*-webkit-transition: all 400ms;*/
+        /*-moz-transition: all 400ms;*/
+        /*-ms-transition: all 400ms;*/
+        /*-o-transition: all 400ms;*/
+        /*transition: all 400ms;*/
+
+        /*-webkit-transform: scale(1);*/
+        /*-moz-transform: scale(1);*/
+        /*-ms-transform: scale(1);*/
+        /*-o-transform: scale(1);*/
+        /*transform: scale(1);*/
+    /*}*/
+    /*.dialog.tran-up{*/
+        /*-webkit-transform: translate3d(0, 100%, 0);*/
+        /*-moz-transform: translate3d(0, 100%, 0);*/
+        /*-ms-transform: translate3d(0, 100%, 0);*/
+        /*-o-transform: translate3d(0, 100%, 0);*/
+        /*transform: translate3d(0, 100%, 0);*/
+    /*}*/
+
+    /*.dialog.tran-up.show{*/
+        /*-webkit-transition: all 400ms;*/
+        /*-moz-transition: all 400ms;*/
+        /*-ms-transition: all 400ms;*/
+        /*-o-transition: all 400ms;*/
+        /*transition: all 400ms;*/
+
+        /*-webkit-transform: translate3d(0, 0, 0);*/
+        /*-moz-transform: translate3d(0, 0, 0);*/
+        /*-ms-transform: translate3d(0, 0, 0);*/
+        /*-o-transform: translate3d(0, 0, 0);*/
+        /*transform: translate3d(0, 0, 0);*/
+    /*}*/
+        /*.dialog.alert-dialog .alert-ok{*/
+            /*display: block;*/
+            /*width: 100%;*/
+            /*line-height: 40px;*/
+            /*text-align: center;*/
+            /*bottom: 0;*/
+            /*border-top: 1px solid #acacac;*/
+        /*}*/
+        /*.dialog.alert-dialog .alert-message{*/
+            /*padding: 0 15px 40px 15px;*/
+            /*line-height: 40px;*/
+        /*}*/
+        /*.dialog a{*/
+            /*position: absolute;*/
+            /*width: 100%;*/
+            /*text-align: center;*/
+            /*left: 0;*/
+            /*display: block;*/
+        /*}*/
+.mask-layer{
     position: fixed;
+    width: 100%;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: -999;
-    background: rgba(122,122,122,0.7);
+    background: rgba(0,0,0,0.3);
+    z-index: -1000;
+    opacity: 0;
 }
-.dialog-mask.show{
-    z-index: 999;
+.mask-layer.show{
+    z-index: 3000;
+    opacity: 1;
 }
-    .dialog{
-        position: absolute;
-        width: 100%;
-        bottom: 0;
-        left: 0;
-        border-top: 2px solid #13a8ab;
-        margin-bottom: 0!important;
-        border-bottom: none!important;
-    }
 
-    .dialog.middle{
-        bottom: 0;
-        left: 0;
-        right: 0;
-        top: 0;
-        height: 200px;
-        margin: auto!important;
-        border-bottom: 2px solid #13a8ab!important;
-    }
+.dialog{
+    position: absolute;
+    width: 90%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 55px 0;
+    height: 100px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
 
-    .dialog.tran-scale{
-        -webkit-transform: scale(0);
-        -moz-transform: scale(0);
-        -ms-transform: scale(0);
-        -o-transform: scale(0);
-        transform: scale(0);
-    }
+.dialog.scale{
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+}
+.mask-layer.show .dialog.scale{
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: all 400ms;
+    -moz-transition: all 400ms;
+    -ms-transition: all 400ms;
+    -o-transition: all 400ms;
+    transition: all 400ms;
+}
 
-    .dialog.tran-scale.show{
-        -webkit-transition: all 400ms;
-        -moz-transition: all 400ms;
-        -ms-transition: all 400ms;
-        -o-transition: all 400ms;
-        transition: all 400ms;
+.dialog .header{
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.dialog .dialog-content{
+    padding: 0 15px;
+    line-height: 40px;
+}
+.dialog .dialog-footer{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 45px;
+    border-top: 1px solid #d9dee6;
+}
+.dialog .dialog-footer a{
+    display: block;
+    line-height: 45px;
+}
+.mask-layer[data-usage="loading"]:before,
+.mask-layer[data-usage="loading"]:after{
+    content: url(../images/loading.png);
+    width: 54px;
+    height: 54px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.mask-layer[data-usage="loading"]:before{
+    content: url(../images/loading_bg.png);
+    width: 65px;
+    height: 64px;
+}
+.mask-layer[data-usage="loading"]:after{
+    -webkit-animation: rotation 0.7s linear infinite;
+    animation: rotation 0.7s linear infinite;
+}
 
-        -webkit-transform: scale(1);
-        -moz-transform: scale(1);
-        -ms-transform: scale(1);
-        -o-transform: scale(1);
-        transform: scale(1);
-    }
-    .dialog.tran-up{
-        -webkit-transform: translate3d(0, 100%, 0);
-        -moz-transform: translate3d(0, 100%, 0);
-        -ms-transform: translate3d(0, 100%, 0);
-        -o-transform: translate3d(0, 100%, 0);
-        transform: translate3d(0, 100%, 0);
-    }
+.mask-layer[data-usage="loading"] a{
+    display: block;
+    width: 45px;
+    height: 45px;
+}
 
-    .dialog.tran-up.show{
-        -webkit-transition: all 400ms;
-        -moz-transition: all 400ms;
-        -ms-transition: all 400ms;
-        -o-transition: all 400ms;
-        transition: all 400ms;
-
-        -webkit-transform: translate3d(0, 0, 0);
-        -moz-transform: translate3d(0, 0, 0);
-        -ms-transform: translate3d(0, 0, 0);
-        -o-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
+@keyframes rotation{
+    from {
+        -webkit-transform: rotateZ(0);
+        transform: rotateZ(0);
     }
-        .dialog.alert-dialog .alert-ok{
-            display: block;
-            width: 100%;
-            line-height: 40px;
-            text-align: center;
-            bottom: 0;
-            border-top: 1px solid #acacac;
-        }
-        .dialog.alert-dialog .alert-message{
-            padding: 0 15px 40px 15px;
-            line-height: 40px;
-        }
-        .dialog a{
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            left: 0;
-            display: block;
-        }
+    to {
+        -webkit-transform: rotateZ(-360deg);
+        transform: rotateZ(-360deg);
+    }
+}
+
+@-webkit-keyframes rotation{
+    from {
+        -webkit-transform: rotateZ(0);
+        transform: rotateZ(0);
+    }
+    to {
+        -webkit-transform: rotateZ(-360deg);
+        transform: rotateZ(-360deg);
+    }
+}
 
     
 /*text-align*/

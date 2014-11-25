@@ -3,8 +3,97 @@
  */
 
 $(function(){
+    // 绑定与native端通讯的方法
+    boundNative(UserCenter);
     // 禁用浏览器默认的touchmove事件
     document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+    // 初始化主模型
+    UserCenter.mainModel = new UserCenter.MainModel();
+    // 设置token改变时兼容方法
+    UserCenter.mainModel.on('change:token', function(){
+        var token = this.get('token');
+        var thisObj = this;
+        var thisFunc = arguments.callee;
+        if(token) {
+//            $.getJSON(
+//                UserCenter.api.getUrl('GetMemberCredit'),
+//                { UserToken: token },
+//                function (res) {
+//                    PointsShop.api.renewToken(res, function(){
+//                        if (res.Data) {
+//                            PointsShop.mainModel.set(res.Data);
+//                        }
+//                    });
+//                }
+//            );
+        }
+    });
+    // 获取当前用户token和类型
+    UserCenter.mainModel.set({
+        token: UserCenter.request('UserToken'),
+        intType: UserCenter.request('intType')
+    });
+
+    /**
+     * 检查指定模型实例是否初始化
+     * 如果没有初始化则初始化
+     * 完成后执行回调
+     * @param instanceKey 实例标识
+     * @param modelName 模型名称
+     * @param callback 回调桉树
+     */
+    function checkModel(instanceKey, modelName, callback){
+        var ThisModel = UserCenter[modelName];
+        // 不能存在指定模型定义
+        if(!ThisModel){
+            return;
+        }
+        // 实例不存在
+        if(!(instanceKey in UserCenter)){
+            // 初始化商户主模型
+            UserCenter[instanceKey] = new ThisModel();
+            // 获取商户数据
+            UserCenter[instanceKey].load();
+        }
+        // 执行回调
+        callback && callback();
+    }
+//    /**
+//     * 检查商户信息模型是否初始化
+//     * 如果没有初始化则初始化
+//     * 完成后执行回调
+//     * @param callback 回调函数
+//     */
+//    function checkMerchantModel(callback) {
+//        if(!UserCenter.merchantModel){
+//            // 初始化商户主模型
+//            UserCenter.merchantModel = new UserCenter.MerchantModel();
+//            // 获取商户数据
+//            UserCenter.merchantModel.load();
+//        }
+//        // 执行回调
+//        callback && callback();
+//    }
+//    /**
+//     * 检查商户信息模型是否初始化
+//     * 如果没有初始化则初始化
+//     * 完成后执行回调
+//     * @param callback 回调函数
+//     */
+//    function checkShopWifiModel(callback) {
+//        if(!UserCenter.shopWifiModel){
+//            // 初始化商户主模型
+//            UserCenter.shopWifiModel = new UserCenter.ShopWifiModel();
+//            // 获取商户数据
+//            UserCenter.shopWifiModel.load();
+//        }
+//        // 执行回调
+//        callback && callback();
+//    }
+
+
+
     // 路由定义
     var router = Backbone.Router.extend({
 
@@ -24,7 +113,10 @@ $(function(){
             'history': 'history', // 访问过的商户热点
 
             'manageShop': 'manageShop', // 管理我的商家
-            'myShopInfo': 'myShopInfo' // 我的商家信息
+            'myShopInfo': 'myShopInfo', // 我的商家信息
+            'visitors': 'visitors', // 访客列表
+            'collectors': 'collectors', // 收藏我的用户
+            'shopWifis': 'shopWifis' //  我的热点
         },
 
         /**
@@ -152,19 +244,67 @@ $(function(){
          * 管理我的商户
          */
         manageShop: function(){
-            if(!UserCenter.manageShopView) {
-                UserCenter.manageShopView = new UserCenter.ManageShopView({});
+            var instanceKey = 'merchantModel';
+            var modelName = 'MerchantModel';
+            checkModel(instanceKey, modelName, function(){
+                if(!UserCenter.manageShopView) {
+                    UserCenter.manageShopView = new UserCenter.ManageShopView({model:UserCenter[instanceKey]});
+                }else{
+                    UserCenter.manageShopView.show();
+                }
+            });
+        },
+
+        /**
+         * 我的商户信息
+         */
+        myShopInfo: function(){
+            var instanceKey = 'merchantModel';
+            var modelName = 'MerchantModel';
+            checkModel(instanceKey, modelName, function(){
+                if (!UserCenter.myShopInfoView) {
+                    UserCenter.myShopInfoView = new UserCenter.MyShopInfoView({model: UserCenter.merchantModel});
+                } else {
+                    UserCenter.myShopInfoView.show();
+                }
+            });
+        },
+
+        /**
+         * 访客列表
+         */
+        visitors: function(){
+            if(!UserCenter.visitorsView) {
+                UserCenter.visitorsView = new UserCenter.VisitorsView({});
             }else{
-                UserCenter.manageShopView.show();
+                UserCenter.visitorsView.show();
             }
         },
 
-        myShopInfo: function(){
-            if(!UserCenter.myShopInfoView) {
-                UserCenter.myShopInfoView = new UserCenter.MyShopInfoView({});
+        /**
+         * 访客列表
+         */
+        collectors: function(){
+            if(!UserCenter.collectorsView) {
+                UserCenter.collectorsView = new UserCenter.CollectorsView({});
             }else{
-                UserCenter.myShopInfoView.show();
+                UserCenter.collectorsView.show();
             }
+        },
+
+        /**
+         * 我的热点
+         */
+        shopWifis: function(){
+            var instanceKey = 'shopWifiModel';
+            var modelName = 'ShopWifiModel';
+            checkModel(instanceKey, modelName, function(){
+                if(!UserCenter.shopWifiView) {
+                    UserCenter.shopWifiView = new UserCenter.ShopWifiView({model:UserCenter[instanceKey]});
+                }else{
+                    UserCenter.shopWifiView.show();
+                }
+            });
         }
     });
 

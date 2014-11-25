@@ -380,17 +380,32 @@
                 position: absolute;
                 content: "";
                 font-size: 0;
-                left: 28.5px;
+                left: 27px;
                 top: 15px;
-                width: 32px;
-                height: 41px;
-                background: url(../images/icons/type_icon_catering.png) no-repeat;
+                width: 35px;
+                height: 45px;
+                background: url(../images/icons/type_icon_default.png) no-repeat;
             }
-            .history-list ul li.shopping:before{
-                background: url(../images/icons/type_icon_shopping.png) no-repeat;
+            .history-list ul li.type-1:before{
+                background: url(../images/icons/type_icon_1.png) no-repeat;
             }
-            .history-list ul li.coffee:before{
-                background: url(../images/icons/type_icon_coffee.png) no-repeat;
+            .history-list ul li.type-2:before{
+                background: url(../images/icons/type_icon_2.png) no-repeat;
+            }
+            .history-list ul li.type-3:before{
+                background: url(../images/icons/type_icon_3.png) no-repeat;
+            }
+            .history-list ul li.type-4:before{
+                background: url(../images/icons/type_icon_4.png) no-repeat;
+            }
+            .history-list ul li.type-5:before{
+                background: url(../images/icons/type_icon_5.png) no-repeat;
+            }
+            .history-list ul li.type-134:before{
+                background: url(../images/icons/type_icon_134.png) no-repeat;
+            }
+            .history-list ul li.type-151:before{
+                background: url(../images/icons/type_icon_151.png) no-repeat;
             }
             .history-list p{
                 display: block;
@@ -444,11 +459,48 @@
     .shop-totals span{
         line-height: 22px;
     }
+    .shop-totals a{
+        display: block;
+    }
 /*我的商户信息*/
-.btn-to-shop-index{
-    display: block;
-    margin: 10px auto;
-    width: 181px;
-    height: 39px;
-    background: url(../images/btn_shop_index.png) no-repeat;
+
+
+/*访客列表 收藏我的用户*/
+ul.user-list li{
+    height: 45px;
+    padding-left: 70px;
 }
+ul.user-list img{
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    border-radius: 50%;
+}
+ul.user-list p,
+ul.user-list pre{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 20px;
+}
+ul.user-list p{
+    height: 25px;
+    line-height: 25px;
+}
+ul.user-list pre{
+    height: 20px;
+}
+
+/*商户管理-我的wifi*/
+.shop-wifi-map{
+    width: 100%;
+    height: 200px;
+}
+.shop-wifi-shop-name{
+    height: 40px;
+    line-height: 25px;
+}
+.shop-wifi-shop-name span{
+    display: block;
+    line-height: 14px;
+}
+

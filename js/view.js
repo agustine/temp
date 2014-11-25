@@ -14,12 +14,14 @@ UserCenter.BaseView = Backbone.View.extend({
     /**
      * 视图级别Class数组
      */
-    grades: ['grade-1', 'grade-2', 'grade-3'],
+    grades: ['grade-1', 'grade-2', 'grade-3', 'grade-4', 'grade-5'],
     initialize: function() {
         return this.render();
     },
 
     render: function() {
+        this.mainBox.append(this.$el);
+        this.$el.html(this.template(this.model.attributes));
         // 初始化iscroll
         this.initScroller();
         // 显示当前视图
@@ -47,10 +49,11 @@ UserCenter.BaseView = Backbone.View.extend({
                 this.mainBox.addClass(grade);
             }
         }
+        UserCenter.dialog.hideLoading();
         return this;
     },
     /**
-     *
+     * 初始化iscroll
      * @returns {UserCenter.BaseView}
      */
     initScroller: function(){
@@ -84,20 +87,92 @@ UserCenter.BaseView = Backbone.View.extend({
     }
 });
 
+UserCenter.MerchantBaseView = UserCenter.BaseView.extend({
+    tagName: "div",
+    className: "page-view grade-2",
+    template: UserCenter.JST.manageShop,
+    initialize: function() {
+        var view = this;
+        UserCenter.dialog.showLoading();
+        this.model.on('change:loaded', function(){
+            view.render();
+        });
+        if(this.model.get('loaded')){
+            this.render();
+        }
+        return this;
+    }
+});
 /**
  * 管理我的商家
  * @type {UserCenter.BaseView}
  */
-UserCenter.ManageShopView = UserCenter.BaseView.extend({
-    el: '[data-page="manageShop"]'
+UserCenter.ManageShopView = UserCenter.MerchantBaseView.extend({
+    tagName: "div",
+    className: "page-view grade-2",
+    template: UserCenter.JST.manageShop
 });
 
 /**
  * 我的商家信息
  * @type {UserCenter.BaseView}
  */
-UserCenter.MyShopInfoView = UserCenter.BaseView.extend({
-    el: '[data-page="myShopInfo"]'
+UserCenter.MyShopInfoView = UserCenter.MerchantBaseView.extend({
+    tagName: "div",
+    className: "page-view grade-3",
+    template: UserCenter.JST.myShopInfo
+});
+
+/**
+ * 访客列表
+ * @type {UserCenter.BaseView}
+ */
+UserCenter.VisitorsView = UserCenter.MerchantBaseView.extend({
+    tagName: "div",
+    className: "page-view grade-3",
+    template: UserCenter.JST.visitorsList
+});
+/**
+ * 收藏我的用户
+ * @type {UserCenter.BaseView}
+ */
+UserCenter.CollectorsView = UserCenter.VisitorsView.extend({
+    template: UserCenter.JST.collectorsList
+});
+/**
+ * 我的wifi
+ * @type {UserCenter.BaseView}
+ */
+UserCenter.ShopWifiView = UserCenter.MerchantBaseView.extend({
+    tagName: "div",
+    className: "page-view grade-3",
+    template: UserCenter.JST.shopWifis,
+    render: function() {
+        var shopType, longitude, latitude;
+        this.mainBox.append(this.$el);
+        this.$el.html(this.template(this.model.attributes));
+        shopType = this.model.get('CategoryId');
+        longitude = this.model.get('Longitude');
+        latitude = this.model.get('Latitude');
+//        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=E4805d16520de693a3fe707cdc962045"></script>
+        $.getScript(UserCenter.api.baiduMap, function(){
+            // 百度地图API功能
+            var map = new BMap.Map('shop_wifi_map');
+            var point = new BMap.Point(longitude,latitude);
+            map.centerAndZoom(point, 15);
+            //创建坐标标识点
+            var pt = new BMap.Point(longitude,latitude);
+            var myIcon = new BMap.Icon('images/icons/type_icon_' + shopType + '.png', new BMap.Size(35,80));
+            var marker2 = new BMap.Marker(pt,{icon:myIcon});  // 创建标注
+            map.addOverlay(marker2);
+        });
+
+
+        // 初始化iscroll
+        this.initScroller();
+        // 显示当前视图
+        return this.show();
+    }
 });
 
 /**
@@ -128,7 +203,7 @@ UserCenter.MainView = UserCenter.BaseView.extend({
         if(data.user && data.user.msgCount > 0){
             $('.header .hint').show().html(data.user.msgCount);
         } else {
-            $('.header .hint').hide()
+            $('.header .hint').hide();
         }
     },
     render: function() {

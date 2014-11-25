@@ -1,0 +1,42 @@
+<section class="scroll-wrapper bg-grey">
+    <div class="scroller clearfix">
+        <div class="shop-wifi-map" id="shop_wifi_map"></div>
+        <p class="bg-blue shop-wifi-shop-name full-padding color-white">
+            <%-Name%>
+            <span class="font-smaller"><%-Address%></span>
+        </p>
+        <ul class="section-box">
+            <li class="full-padding">
+                <label>Wi-Fi名称</label>
+                <pre><%-ServiceSetId%></pre>
+            </li>
+            <li class="full-padding">
+                <label>添加时间</label>
+                <pre><%-UserCenter.getDate(CreatedAt)%></pre>
+            </li>
+            <li class="full-padding">
+                <label>状态</label>
+                <pre class="color-highlight"><%-Status.Name%></pre>
+            </li>
+        </ul>
+    </div>
+</section>
+<!--头部 start-->
+<header class="header bg-header color-white">
+    我的热点
+    <a href="#manageShop" title="我的商家信息"
+       class="btn-icon btn-icon-left icon-back left">
+    </a>
+    <a href="javascript:void(0)" title="维护热点信息"
+       class="right">
+        维护热点
+    </a>
+</header>
+<!--头部 end-->
+
+<footer class="footer bg-grey">
+    <a href="javascript:void(0)" title="维护热点信息"
+       class="btn color-white">
+        维护热点信息
+    </a>
+</footer>
