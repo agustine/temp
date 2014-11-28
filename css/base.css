@@ -44,6 +44,9 @@ html,body{
 .color-red{
     color: #ff0000;
 }
+.color-link{
+    color: #4594ff;
+}
 
 
 /* 背景颜色 */
@@ -396,6 +399,7 @@ ul.list-view a{
     overflow: hidden;
     font-size: 20px;
     z-index: 9;
+    background-color: #434d57;
 }
 
     .header a{
@@ -554,6 +558,18 @@ ul.list-view a{
     background: url(../images/star/shop_star5.png) no-repeat;
 }
 
+a.switch{
+    display: block;
+    width: 58px;
+    height: 26px;
+}
+a.switch.on{
+    background: url(../images/switch_on.png) no-repeat;
+}
+a.switch.off{
+    background: url(../images/switch_off.png) no-repeat;
+}
+
 /* 对话框 */
 /*.dialog-mask{*/
     /*position: fixed;*/
@@ -699,10 +715,14 @@ ul.list-view a{
 }
 
 .dialog .header{
+    position: absolute;
+    width: 100%;
+    top: 0;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    color: #ffffff;
 }
 .dialog .dialog-content{
     padding: 0 15px;
@@ -784,7 +804,12 @@ ul.list-view a{
 .block{
     display: block;
 }
-
+.fleft{
+    float: left;
+}
+.fright{
+    float: right;
+}
 /* clearfix */
 .clearfix:before,
 .clearfix:after{

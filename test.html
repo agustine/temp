@@ -30,30 +30,16 @@
     <div id="bg" style="width: 100px; height: 100px; background-color: #cccccc;">
 
     </div>
-    <input type="file" id="photo" accept="video/*" style="width: 100px; height: 100px;  display: block;" />
-    <!--&lt;!&ndash;主视图 start&ndash;&gt;-->
-    <!--<div class="page-view main-view">-->
+    <input type="file" id="photo" name="UploadFile" accept="image/*" style="  display: none;" />
 
-    <!--</div>-->
-    <!--&lt;!&ndash;主视图 end&ndash;&gt;-->
-
-    <!--&lt;!&ndash;关注视图 start&ndash;&gt;-->
-    <!--<div class="page-view main-view grade-2">-->
-
-    <!--</div>-->
-    <!--&lt;!&ndash;关注视图 end&ndash;&gt;-->
-
-    <!--&lt;!&ndash;关注视图 start&ndash;&gt;-->
-    <!--<div class="page-view main-view grade-2">-->
-
-    <!--</div>-->
-    <!--&lt;!&ndash;关注视图 end&ndash;&gt;-->
 
 </div>
 
 
 
 <script src="js/vendor/zepto.min.js"></script>
+<script src="js/base.js"></script>
+<script src="js/jquery.ajaxfileupload.js"></script>
 <!--&lt;!&ndash;<script src="js/vendor/touch.js"></script>&ndash;&gt;-->
 <!--<script src="js/vendor/underscore.min.js"></script>-->
 <!--<script src="js/vendor/backbone.min.js"></script>-->
@@ -70,7 +56,21 @@
     bg.click(function(){
         file.click();
     });
-    file.on('change', function(){alert();})
+
+    $('#photo').ajaxfileupload({
+        action: '/shared/upload?userid=14038',
+        onComplete: function(res){
+            if(res && res.Success && res.Data) {
+                var $img = $('<img>').attr({
+                    width: '100%',
+                    height: '100%',
+                    src: res.Data.picurl
+                });
+                $('#bg').empty().append($img);
+            }
+
+        }
+    });
 </script>
 </body>
 </html>

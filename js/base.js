@@ -14,7 +14,40 @@ var UserCenter = {};
             script.onload = func;
         }
         document.getElementsByTagName("head")[0].appendChild( script );
-    }
+    };
+    $.fn.serializeForm = function() {
+
+        var hash = {};
+
+        function stringKey(key, value) {
+            var beginBracket = key.lastIndexOf('[');
+            if (beginBracket == -1) {
+                var hash = {};
+                hash[key] = value;
+                return hash;
+            }
+            var newKey = key.substr(0, beginBracket);
+            var newValue = {};
+            newValue[key.substring(beginBracket + 1, key.length - 1)] = value;
+            return stringKey(newKey, newValue);
+        }
+
+        var els = $(this).find('input,select').get();
+        $.each(els, function() {
+            if (this.name && !this.disabled && (this.checked || /select|textarea/i.test(this.nodeName) || /hidden|text|search|tel|url|email|password|datetime|date|month|week|time|datetime-local|number|range|color/i.test(this.type))) {
+                var val = $(this).val();
+                $.extend(true, hash, stringKey(this.name, val));
+            }
+        });
+        return hash;
+    };
+
+    $.isJSON = function (json) {
+        json = json.replace(/\\["\\\/bfnrtu]/g, '@');
+        json = json.replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']');
+        json = json.replace(/(?:^|:|,)(?:\s*\[)+/g, '');
+        return (/^[\],:{}\s]*$/.test(json))
+    };
 })($);
 
 // ajax api
@@ -30,13 +63,20 @@ UserCenter.api = {
     getMerchantsUrl: function(apiName){
         return this.merchantsBase + apiName;
     },
+    getMerchantsPostUrl: function(apiName){
+        return this.merchantsBase + UserCenter.mainModel.getPostAction(apiName);
+    },
+    getPostParams: function(params){
+        return [this.getParams(params)];
+    },
 
-    postMerchantApi: function(action, data, success){
+    postMerchantApi: function(action, data, success, error){
+        UserCenter.dialog.showLoading();
         $.ajax({
-            url: UserCenter.api.getMerchantsUrl(action),
+            url: UserCenter.api.getMerchantsPostUrl(action),
             type: 'post',
             traditional:true,
-            data: JSON.stringify(UserCenter.api.getParams(data)),
+            data: JSON.stringify(UserCenter.api.getPostParams(data)),
             dataType: 'json',
             beforeSend: function (request) {
                 request.setRequestHeader("content-type", "application/json");
@@ -44,9 +84,17 @@ UserCenter.api = {
             success: function (res) {
                 UserCenter.api.renewToken(res, function(){
                     success && success(res);
+                    UserCenter.dialog.hideLoading();
                 }, function(){
                     UserCenter.api.postMerchantApi(action, data, success)
+                }, function(){
+                    error && error(res);
+                    UserCenter.dialog.hideLoading();
                 });
+            },
+            error: function(){
+                error && error();
+                UserCenter.dialog.hideLoading();
             }
         });
     },
@@ -57,7 +105,7 @@ UserCenter.api = {
      * @param success 响应正确的回调函数
      * @param renewCallback token已过期或者没有登录的回调
      */
-    renewToken: function(res, success, renewCallback){
+    renewToken: function(res, success, renewCallback, error){
         var token;
         if (res && res.Success) {
             UserCenter.dialog.hideLoading();
@@ -72,6 +120,8 @@ UserCenter.api = {
                     renewCallback && renewCallback();
                 }
             });
+        } else {
+            error && error(res);
         }
     }
 };
@@ -108,9 +158,15 @@ UserCenter.request = function(name){
     if (r != null) return unescape(r[2]); return null;
 };
 
+
 UserCenter.getDate = function(ms){
     var result = new Date();
     result.setTime(ms);
     return result.getFullYear() + '-' + (result.getMonth() + 1) + '-' + result.getDate();
 };
+
+UserCenter.RegExp = {
+    url: /^http[s]?:\/\/([\w-]+\.)+[\w-]+([\w-./?%&=]*)?$/i
+}
+
 

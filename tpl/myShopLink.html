@@ -1,0 +1,65 @@
+<%
+    var name = noData ? '' : Name;
+    var link = noData ? '' : Link;
+    var status = noData ? '未提交' : Status.Name;
+    var statusClass = noData ? 'color-light-grey' : 'color-highlight';
+%>
+<section class="scroll-wrapper bg-grey">
+    <div class="scroller clearfix">
+        <div class="shop-link-box" data-switch="<%-IsEnabled%>" data-edit="0">
+            <div class="section-box full-padding none-bottom">
+                推广链接
+                <a href="javascript:void(0)" class="switch on"></a>
+                <a href="javascript:void(0)" class="switch off"></a>
+            </div>
+            <p class="full-padding font-small color-light-grey">开启推广链接，联连用户通过商户主页跳可跳转到您设置的营销网页。 </p>
+            <div class="shop-link-update-panel view">
+                <ul class="section-box none-bottom">
+                    <li class="full-padding">
+                        <label>标题</label>
+                        <pre><%-name %></pre>
+                    </li>
+                    <li class="full-padding">
+                        <label>链接</label>
+                        <pre><%-link %></pre>
+                    </li>
+                    <li class="full-padding">
+                        <label>状态</label>
+                        <pre class="<%-statusClass%>"><%-status %></pre>
+                    </li>
+                </ul>
+                <p class="full-padding font-small color-light-grey">
+                    每月只许修改一次。
+                    <a href="javascript:void(0)" class="fright color-link btn-show-help">点击查看帮助</a>
+                </p>
+                <a href="javascript:void(0)" class="btn color-white btn-edit" title="修改">修改</a>
+            </div>
+            <div class="shop-link-update-panel edit">
+                <ul class="section-box none-bottom">
+                    <li class="full-padding">
+                        <label>标题</label>
+                        <pre><input type="text" name="Name" value="" /></pre>
+                    </li>
+                    <li class="full-padding">
+                        <label>链接</label>
+                        <pre><input type="url" name="Link" value="" /></pre>
+                    </li>
+                </ul>
+                <p class="full-padding font-small color-light-grey">
+                    每月只许修改一次。
+                    <a href="javascript:void(0)" class="fright color-link btn-show-help">点击查看帮助</a>
+                </p>
+                <a href="javascript:void(0)" class="btn color-white btn-submit" title="保存">保存</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!--头部 start-->
+<header class="header bg-header color-white">
+    推广链接
+    <a href="#manageShop" title="管理我的商家"
+       class="btn-icon btn-icon-left icon-back left">
+    </a>
+</header>
+<!--头部 end-->

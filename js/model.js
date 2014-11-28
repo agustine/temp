@@ -18,17 +18,25 @@ UserCenter.MainModel = Backbone.Model.extend({
     },
 
     getUserParams: function(){
+        var model = this;
 //        return {
-//            userToken: this.get('token')
+//            userToken: model.get('token')
 //        }
         return {
             userid: 14038
         }
+    },
+    getPostAction: function(action){
+        var splitChar = action.indexOf('?') > -1 ?
+            '&' : '?';
+//        return action + splitChar + 'UserToken=' + this.get('token');
+        return action + splitChar + 'userid=14038';
     }
 });
 
 UserCenter.BaseModel = Backbone.Model.extend({
     defaults:{
+        noData: false,
         loaded: 0
     },
     load: function() {
@@ -40,10 +48,14 @@ UserCenter.BaseModel = Backbone.Model.extend({
                 function (res) {
                     UserCenter.api.renewToken(res, function () {
                         var data, loaded;
-                        if (res.Data && res.Data.Items && res.Data.Items.length > 0) {
-                            data = res.Data.Items[0];
-                            loaded = model.get('loaded') + 1;
-                            model.set(data);
+                        if (res.Data && res.Data.Items) {
+                            if(res.Data.Items.length === 0){
+                                model.set({noData: true});
+                            } else {
+                                data = res.Data.Items[0];
+                                loaded = model.get('loaded') + 1;
+                                model.set(data);
+                            }
                             model.set({loaded:loaded});
                         }
                     }, init);
@@ -65,24 +77,43 @@ UserCenter.ShopWifiModel = UserCenter.BaseModel.extend({
 });
 
 // 商户推广链接模型
-UserCenter.ShopLink = UserCenter.BaseModel.extend({
+UserCenter.ShopLinkModel = UserCenter.BaseModel.extend({
     apiName: 'Links',
-    disableShopLink: function(){
+    disableShopLink: function(callback){
         var model = this;
-        UserCenter.api.postMerchantApi('DisableLinks', {Id: model.get('Id')}, function(){
+        UserCenter.api.postMerchantApi('DisabledLinks', {Id: model.get('Id')}, function(){
             model.set({IsEnabled: 0});
+            callback && callback();
         });
     },
-    enableShopLink: function(){
+    enableShopLink: function(callback){
         var model = this;
-        UserCenter.api.postMerchantApi('EnableLinks', {Id: model.get('Id')}, function(){
+        UserCenter.api.postMerchantApi('EnabledLinks', {Id: model.get('Id')}, function(){
             model.set({IsEnabled: 1});
+            callback && callback();
         });
     },
-    updateShopLink: function(link){
+    updateShopLink: function(name, link, callback, error){
         var model = this;
-        UserCenter.api.postMerchantApi('Links', {Id: model.get('Id'), Link: link}, function(){
-            model.set({IsEnabled: 1});
-        });
+        UserCenter.api.postMerchantApi('Links',
+            {
+                Id: model.get('Id'),
+                Name: name,
+                Link: link
+            },
+            function(res){
+                var data, loaded;
+                if (res.Data && res.Data.Items && res.Data.Items.length > 0) {
+                    data = res.Data.Items[0];
+                    loaded = model.get('loaded') + 1;
+                    model.set(data);
+                    model.set({loaded:loaded});
+                }
+                callback && callback();
+            },
+            function(res){
+                error && error(res);
+            }
+        );
     }
 });

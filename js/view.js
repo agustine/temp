@@ -114,6 +114,88 @@ UserCenter.ManageShopView = UserCenter.MerchantBaseView.extend({
 });
 
 /**
+ * 管理我的商家
+ * @type {UserCenter.BaseView}
+ */
+UserCenter.ManageShopLinkView = UserCenter.MerchantBaseView.extend({
+    tagName: "div",
+    className: "page-view grade-2",
+    template: UserCenter.JST.myShopLink,
+    events: {
+        'touchstart .switch.on': 'disableShopLink',
+        'touchstart .switch.off': 'enableShopLink',
+        'touchstart .btn-submit': 'updateShopLink',
+        'touchstart .btn-edit': 'showEdit'
+    },
+    initialize: function() {
+        var view = this;
+        UserCenter.dialog.showLoading();
+        this.model.on('change:loaded', function(){
+            view.render();
+        });
+        this.model.on('change:IsEnabled', function(){
+            view.switchStatus();
+        });
+        if(this.model.get('loaded')){
+            this.render();
+        }
+        return this;
+    },
+    switchStatus: function(){
+        var isEnabled = this.model.get('IsEnabled');
+        this.$('.shop-link-box').attr('data-switch', isEnabled);
+    },
+    disableShopLink: function(){
+        this.model.disableShopLink();
+    },
+    enableShopLink: function(){
+        this.model.enableShopLink();
+    },
+    showEdit: function(){
+        this.$('.shop-link-box').attr('data-edit', '1');
+    },
+    updateShopLink: function(){
+        var data = this.$('.shop-link-update-panel.edit')
+            .serializeForm();
+        if(!data.Name){
+            UserCenter.dialog.alert('请输入推广链接标题！');
+            return;
+        }
+        if(data.Name.length > 50){
+            UserCenter.dialog.alert('推广链接标题不能超过50个字符！');
+            return;
+        }
+        if(!data.Link){
+            UserCenter.dialog.alert('请输入链接地址！');
+            return;
+        }
+        if(data.Link.length > 500){
+            UserCenter.dialog.alert('推广链接地址不能超过500个字符！');
+            return;
+        }
+        if(!UserCenter.RegExp.url.test(data.Link)){
+            UserCenter.dialog.alert('推广链接地址格式不正确！');
+            return;
+        }
+
+        if(!data.Link){
+            UserCenter.dialog.alert('请输入链接！');
+            return;
+        }
+        this.model.updateShopLink(data.Name, data.Link,
+            function(){
+                UserCenter.dialog.alert('保存成功！');
+            },
+            function(res){
+                if(res){
+                    UserCenter.dialog.alert(res.Message);
+                }
+            }
+        );
+    }
+});
+
+/**
  * 我的商家信息
  * @type {UserCenter.BaseView}
  */

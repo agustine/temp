@@ -116,7 +116,8 @@ $(function(){
             'myShopInfo': 'myShopInfo', // 我的商家信息
             'visitors': 'visitors', // 访客列表
             'collectors': 'collectors', // 收藏我的用户
-            'shopWifis': 'shopWifis' //  我的热点
+            'shopWifis': 'shopWifis', //  我的热点
+            'manageShopLink': 'manageShopLink' // 推广链接
         },
 
         /**
@@ -303,6 +304,21 @@ $(function(){
                     UserCenter.shopWifiView = new UserCenter.ShopWifiView({model:UserCenter[instanceKey]});
                 }else{
                     UserCenter.shopWifiView.show();
+                }
+            });
+        },
+
+        /**
+         * 推广链接
+         */
+        manageShopLink: function(){
+            var instanceKey = 'shopLinkModel';
+            var modelName = 'ShopLinkModel';
+            checkModel(instanceKey, modelName, function(){
+                if(!UserCenter.manageShopLinkView) {
+                    UserCenter.manageShopLinkView = new UserCenter.ManageShopLinkView({model:UserCenter[instanceKey]});
+                }else{
+                    UserCenter.manageShopLinkView.show();
                 }
             });
         }

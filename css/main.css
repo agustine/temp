@@ -504,3 +504,40 @@ ul.user-list pre{
     line-height: 14px;
 }
 
+/*商户管理-推广链接*/
+.shop-link-box{
+
+}
+.shop-link-box .switch{
+    position: absolute;
+    top: 9px;
+    right: 15px;
+    display: none;
+}
+
+.shop-link-update-panel{
+    display: none;
+}
+.shop-link-update-panel input{
+    display: block;
+    height: 100%;
+    border: 0;
+    line-height: 30px;
+    font-size: 16px;
+    outline-offset: 0!important;
+    outline: none;
+}
+
+.shop-link-box[data-switch="1"] .switch.on{
+    display: block;
+}
+.shop-link-box[data-switch="0"] .switch.off{
+    display: block;
+}
+.shop-link-box[data-switch="1"][data-edit="0"] .shop-link-update-panel.view{
+    display: block;
+}
+.shop-link-box[data-switch="1"][data-edit="1"] .shop-link-update-panel.edit{
+    display: block;
+}
+
