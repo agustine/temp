@@ -130,7 +130,10 @@ UserCenter.api = {
 UserCenter.dialog = (function(){
     var $alert = $('.mask-layer[data-usage="alert"]');
     var $loading = $('.mask-layer[data-usage="loading"]');
-    var _alert = function(msg){
+    var $tap = $('.mask-layer[data-usage="tapMask"]');
+    var _alert = function(msg, title){
+        title = title || '提示';
+        $alert.find('.header').html(title);
         $alert.find('.dialog-content').html(msg);
         $alert.addClass('show');
     };
@@ -140,7 +143,12 @@ UserCenter.dialog = (function(){
     var _hideLoading = function(){
         $loading.removeClass('show');
     };
-
+    var _tapMask = function(){
+        $tap.addClass('show');
+        setTimeout(function(){
+            $tap.removeClass('show');
+        }, 400);
+    }
     $alert.find('a').on('click', function(){
         $alert.removeClass('show');
     });
@@ -148,7 +156,8 @@ UserCenter.dialog = (function(){
     return {
         alert: _alert,
         showLoading: _showLoading,
-        hideLoading: _hideLoading
+        hideLoading: _hideLoading,
+        tap: _tapMask
     }
 })();
 

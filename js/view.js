@@ -11,6 +11,7 @@ UserCenter.BaseView = Backbone.View.extend({
      * 所有视图的外容器
      */
     mainBox: $('.panels-box'),
+
     /**
      * 视图级别Class数组
      */
@@ -32,23 +33,40 @@ UserCenter.BaseView = Backbone.View.extend({
      * @returns {UserCenter.BaseView} 视图对象本身，以支持链式调用
      */
     show: function(){
-        var $viewElem = this.$el,
-            $views = $('.page-view'),
-            grades = this.grades,
-            gradeLength = grades.length,
-            i, grade;
-        // 移除所有视图的show class
-        $views.removeClass('show');
-        // 为当前视图添加show class
-        $viewElem.addClass('show');
-        // 为外容器添加当前视图级别 class
-        for(i = 0; i < gradeLength; i++) {
-            grade = grades[i];
-            this.mainBox.removeClass(grade);
-            if ($viewElem.is('.' + grade)) {
-                this.mainBox.addClass(grade);
-            }
+        var height;
+        var direction = 0;
+        var $viewElem = this.$el.removeClass('t');
+        var $currentView = $('[data-position="current"]').removeClass('t');
+        var toLevel = parseFloat($viewElem.attr('data-level'));
+        var currentLevel = parseFloat($currentView.attr('data-level'));
+
+        $('[data-position="right"],[data-position="left"]').appendTo($('.page-recovery'));
+
+        if(!currentLevel || !toLevel || currentLevel === toLevel){
+            direction = 0;
+        } else if(toLevel > currentLevel) {
+            direction = 1;
+        } else {
+            direction = -1;
         }
+
+        if(direction === 0){
+            $currentView.appendTo($('.page-recovery'));
+            $viewElem.attr('data-position', 'current');
+            this.mainBox.append($viewElem);
+            UserCenter.dialog.hideLoading();
+            return this;
+        }
+
+        $viewElem.attr('data-position', direction === -1 ? 'left': 'right');
+        this.mainBox.append($viewElem);
+
+        // reflow
+        height = this.mainBox.get(0).offsetHeight;
+
+        $viewElem.addClass('t').attr('data-position', 'current');
+        $currentView.addClass('t').attr('data-position', direction === -1 ? 'right':'left');
+
         UserCenter.dialog.hideLoading();
         return this;
     },
@@ -62,6 +80,7 @@ UserCenter.BaseView = Backbone.View.extend({
         } else {
             this.scroller = new IScroll(this.$('.scroll-wrapper').get(0), {
                 mouseWheel: true,
+                tap: true,
                 click: true
             });
             this.refreshScroller(400);
@@ -103,11 +122,16 @@ UserCenter.MerchantBaseView = UserCenter.BaseView.extend({
         return this;
     }
 });
+
+
 /**
  * 管理我的商家
  * @type {UserCenter.BaseView}
  */
 UserCenter.ManageShopView = UserCenter.MerchantBaseView.extend({
+    attributes: {
+        'data-level': 10
+    },
     tagName: "div",
     className: "page-view grade-2",
     template: UserCenter.JST.manageShop
@@ -118,8 +142,11 @@ UserCenter.ManageShopView = UserCenter.MerchantBaseView.extend({
  * @type {UserCenter.BaseView}
  */
 UserCenter.ManageShopLinkView = UserCenter.MerchantBaseView.extend({
+    attributes: {
+        'data-level': 20
+    },
     tagName: "div",
-    className: "page-view grade-2",
+    className: "page-view grade-3",
     template: UserCenter.JST.myShopLink,
     events: {
         'touchstart .switch.on': 'disableShopLink',
@@ -195,11 +222,103 @@ UserCenter.ManageShopLinkView = UserCenter.MerchantBaseView.extend({
     }
 });
 
+UserCenter.TextAdView = UserCenter.BaseView.extend({
+    tagName: "li",
+//    className: "page-view grade-2",
+    template: UserCenter.JST.textAdItem,
+    events:{
+        'tap .btn-delete': 'deleteAd',
+        'tap .btn-publish': 'publish',
+        'tap .btn-unpublish': 'unPublish'
+    },
+    initialize: function() {
+        var view = this;
+        this.model.on('change', function(){
+            view.render();
+        });
+        return this.render();
+    },
+    render: function() {
+        this.$el.html(this.template(this.model.attributes));
+    },
+    deleteAd: function(){
+        var view = this;
+        UserCenter.api.postMerchantApi('DeleteAdMessages', {Id: view.model.get('Id')}, function(){
+            view.remove();
+            view.listView.refreshScroller(0);
+        });
+    },
+    publish: function(){
+        var view = this;
+        UserCenter.api.postMerchantApi('EnabledAdMessages', {Id: view.model.get('Id')}, function(){
+            view.model.set('IsEnabled', 1);
+        });
+    },
+    unPublish: function(){
+        var view = this;
+        UserCenter.api.postMerchantApi('DisabledAdMessages', {Id: view.model.get('Id')}, function(){
+            view.model.set('IsEnabled', 0);
+        });
+    }
+});
+UserCenter.TextAdsView = UserCenter.MerchantBaseView.extend({
+    attributes: {
+        'data-level': 20
+    },
+    tagName: "div",
+    className: "page-view grade-3",
+    template: UserCenter.JST.textAdList,
+    initialize: function(){
+        var view = this;
+        this.collection.on('add remove', function(){
+            view.renderList();
+        });
+        return this.render();
+    },
+    render: function(){
+        var view = this;
+        this.$el.html(this.template({})).appendTo(this.mainBox);
+        this.$listBox = this.$('.text-ad-list');
+        function init(){
+            $.getJSON(
+                UserCenter.api.getMerchantsUrl('AdMessages'),
+                UserCenter.api.getParams({}),
+                function (res) {
+                    UserCenter.api.renewToken(res, function () {
+                        var data, loaded;
+                        if (res.Data && res.Data.Items) {
+                            view.collection.add(res.Data.Items);
+                        }
+                    }, init);
+                }
+            );
+        }
+        init();
+        // 初始化iscroll
+        this.initScroller();
+        this.show();
+        return this;
+    },
+    renderList: function(){
+        var view = this;
+        this.$listBox.empty();
+        this.collection.forEach(function(item){
+            var itemView = new UserCenter.TextAdView({model:item});
+            itemView.listView = view;
+            view.$listBox.append(itemView.$el);
+        });
+        this.initScroller();
+    }
+});
+
 /**
  * 我的商家信息
  * @type {UserCenter.BaseView}
  */
 UserCenter.MyShopInfoView = UserCenter.MerchantBaseView.extend({
+    attributes: {
+        'data-level': 20
+    },
     tagName: "div",
     className: "page-view grade-3",
     template: UserCenter.JST.myShopInfo
@@ -210,6 +329,9 @@ UserCenter.MyShopInfoView = UserCenter.MerchantBaseView.extend({
  * @type {UserCenter.BaseView}
  */
 UserCenter.VisitorsView = UserCenter.MerchantBaseView.extend({
+    attributes: {
+        'data-level': 20
+    },
     tagName: "div",
     className: "page-view grade-3",
     template: UserCenter.JST.visitorsList
@@ -219,6 +341,9 @@ UserCenter.VisitorsView = UserCenter.MerchantBaseView.extend({
  * @type {UserCenter.BaseView}
  */
 UserCenter.CollectorsView = UserCenter.VisitorsView.extend({
+    attributes: {
+        'data-level': 20
+    },
     template: UserCenter.JST.collectorsList
 });
 /**
@@ -226,6 +351,9 @@ UserCenter.CollectorsView = UserCenter.VisitorsView.extend({
  * @type {UserCenter.BaseView}
  */
 UserCenter.ShopWifiView = UserCenter.MerchantBaseView.extend({
+    attributes: {
+        'data-level': 20
+    },
     tagName: "div",
     className: "page-view grade-3",
     template: UserCenter.JST.shopWifis,
@@ -262,6 +390,9 @@ UserCenter.ShopWifiView = UserCenter.MerchantBaseView.extend({
  * @type {UserCenter.BaseView}
  */
 UserCenter.MainView = UserCenter.BaseView.extend({
+    attributes: {
+        'data-level': 1
+    },
     // 主视图容器
     tagName: "div",
 
@@ -315,6 +446,9 @@ UserCenter.MainView = UserCenter.BaseView.extend({
  * @type {UserCenter.BaseView}
  */
 UserCenter.FollowsView = UserCenter.BaseView.extend({
+    attributes: {
+        'data-level': 10
+    },
     // 主视图容器
     tagName: "div",
     className: "page-view grade-2",
@@ -354,6 +488,9 @@ UserCenter.FunsView = UserCenter.FollowsView.extend({titleName: '我的粉丝'})
  * @type {UserCenter.BaseView}
  */
 UserCenter.FavorShopsView = UserCenter.BaseView.extend({
+    attributes: {
+        'data-level': 10
+    },
     // 主视图容器
     tagName: "div",
     className: "page-view grade-2",
@@ -384,6 +521,9 @@ UserCenter.FavorShopsView = UserCenter.BaseView.extend({
  * @type {UserCenter.BaseView}
  */
 UserCenter.FootprintView = UserCenter.BaseView.extend({
+    attributes: {
+        'data-level': 10
+    },
     // 主视图容器
     tagName: "div",
     className: "page-view grade-2",
@@ -469,6 +609,9 @@ UserCenter.FootprintView = UserCenter.BaseView.extend({
  * @type {UserCenter.BaseView}
  */
 UserCenter.MyVideoView = UserCenter.BaseView.extend({
+    attributes: {
+        'data-level': 10
+    },
     // 主视图容器
     tagName: "div",
     className: "page-view grade-2",
@@ -501,6 +644,9 @@ UserCenter.MyVideoView = UserCenter.BaseView.extend({
  * @type {UserCenter.BaseView}
  */
 UserCenter.WifisView = UserCenter.BaseView.extend({
+    attributes: {
+        'data-level': 10
+    },
     // 主视图容器
     tagName: "div",
     className: "page-view grade-2",
@@ -530,6 +676,9 @@ UserCenter.WifisView = UserCenter.BaseView.extend({
  * @type {UserCenter.BaseView}
  */
 UserCenter.ShopPageView = UserCenter.BaseView.extend({
+    attributes: {
+        'data-level': 10
+    },
     // 主视图容器
     tagName: "div",
     className: "page-view grade-3",
@@ -564,6 +713,9 @@ UserCenter.ShopPageView = UserCenter.BaseView.extend({
  * @type {UserCenter.BaseView}
  */
 UserCenter.HistoryWifisView = UserCenter.BaseView.extend({
+    attributes: {
+        'data-level': 10
+    },
     // 主视图容器
     tagName: "div",
     className: "page-view grade-2",

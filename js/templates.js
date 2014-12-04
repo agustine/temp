@@ -92,7 +92,7 @@ __p += '<section class="scroll-wrapper bg-grey">\r\n    <div class="scroller cle
 __e(CountOfVisited) +
 '\r\n                    <span class="font-small color-light-grey block">累计联网人数</span>\r\n                </a>\r\n            </li>\r\n            <li>\r\n                <a href="#collectors">\r\n                    ' +
 __e(CountOfCollect) +
-'\r\n                    <span class="font-small color-light-grey block">累计商铺收藏人数</span>\r\n                </a>\r\n            </li>\r\n        </ul>\r\n\r\n        <ul class="section-box">\r\n            <li>\r\n                <a href="#myShopInfo" title="我的商家信息"\r\n                   class="listitem icon-listitem icon-shop-info arrow-right">我的商家信息</a>\r\n            </li>\r\n\r\n            <li>\r\n                <a href="javascript:void(0);" title="客户留言"\r\n                   class="listitem icon-listitem icon-mail arrow-right">客户留言</a>\r\n            </li>\r\n            <li>\r\n                <a href="#shopWifis" title="我的热点"\r\n                   class="listitem icon-listitem icon-my-wifi arrow-right">我的热点</a>\r\n            </li>\r\n        </ul>\r\n        <div class="section-box none-bottom">\r\n            <a href="javascript:void(0);" title="我要发布Wi-Fi列表号外广告"\r\n               class="listitem icon-listitem icon-broadcast-yellow arrow-right">我要发布Wi-Fi列表号外广告</a>\r\n        </div>\r\n        <p class="full-padding font-small color-light-grey">联连用户在商户Wi-Fi信号覆盖区域时，通过【号外】推送商户信息，吸引客流。</p>\r\n        <div class="section-box none-bottom">\r\n            <a href="javascript:void(0);" title="我要发布Wi-Fi列表号外广告"\r\n               class="listitem icon-listitem icon-image-text arrow-right">我要发布商户主页图文广告</a>\r\n        </div>\r\n        <p class="full-padding font-small color-light-grey">商户专属登录页广告展示。自主订制，展示品牌形象或促销信息。</p>\r\n        <div class="section-box none-bottom">\r\n            <a href="javascript:void(0);" title="群发营销信息"\r\n               class="listitem icon-listitem icon-group-ad arrow-right">群发营销信息</a>\r\n        </div>\r\n        <p class="full-padding font-small color-light-grey">针对性地群发促销信息，分别发送给各个收件人，带动销售，及更好地服务消费者。</p>\r\n        <div class="section-box none-bottom">\r\n            <a href="#manageShopLink" title="推广链接"\r\n               class="listitem icon-listitem icon-shop-link arrow-right">推广链接</a>\r\n        </div>\r\n        <p class="full-padding font-small color-light-grey">设置跳转的URL地址，可以实现商户主页跳转到您设置的营销网页。</p>\r\n        <div class="section-box none-bottom">\r\n            <a href="javascript:void(0);" title="商家权限转移"\r\n               class="listitem icon-listitem icon-shop-assignment arrow-right">商家权限转移</a>\r\n        </div>\r\n        <p class="full-padding font-small color-light-grey">将商户转移到另一个联连账号进行管理，转移后该账户将恢复为普通帐号。</p>\r\n    </div>\r\n</section>\r\n<!--头部 start-->\r\n<header class="header bg-header color-white">\r\n    管理我的商家\r\n    <a href="#main" title="我的"\r\n       class="btn-icon btn-icon-left icon-back left">\r\n    </a>\r\n</header>\r\n<!--头部 end-->';
+'\r\n                    <span class="font-small color-light-grey block">累计商铺收藏人数</span>\r\n                </a>\r\n            </li>\r\n        </ul>\r\n\r\n        <ul class="section-box">\r\n            <li>\r\n                <a href="#myShopInfo" title="我的商家信息"\r\n                   class="listitem icon-listitem icon-shop-info arrow-right">我的商家信息</a>\r\n            </li>\r\n\r\n            <li>\r\n                <a href="javascript:void(0);" title="客户留言"\r\n                   class="listitem icon-listitem icon-mail arrow-right">客户留言</a>\r\n            </li>\r\n            <li>\r\n                <a href="#shopWifis" title="我的热点"\r\n                   class="listitem icon-listitem icon-my-wifi arrow-right">我的热点</a>\r\n            </li>\r\n        </ul>\r\n        <div class="section-box none-bottom">\r\n            <a href="#manageTextAds" title="我要发布Wi-Fi列表号外广告"\r\n               class="listitem icon-listitem icon-broadcast-yellow arrow-right">我要发布Wi-Fi列表号外广告</a>\r\n        </div>\r\n        <p class="full-padding font-small color-light-grey">联连用户在商户Wi-Fi信号覆盖区域时，通过【号外】推送商户信息，吸引客流。</p>\r\n        <div class="section-box none-bottom">\r\n            <a href="javascript:void(0);" title="我要发布商户主页图文广告"\r\n               class="listitem icon-listitem icon-image-text arrow-right">我要发布商户主页图文广告</a>\r\n        </div>\r\n        <p class="full-padding font-small color-light-grey">商户专属登录页广告展示。自主订制，展示品牌形象或促销信息。</p>\r\n        <div class="section-box none-bottom">\r\n            <a href="javascript:void(0);" title="群发营销信息"\r\n               class="listitem icon-listitem icon-group-ad arrow-right">群发营销信息</a>\r\n        </div>\r\n        <p class="full-padding font-small color-light-grey">针对性地群发促销信息，分别发送给各个收件人，带动销售，及更好地服务消费者。</p>\r\n        <div class="section-box none-bottom">\r\n            <a href="#manageShopLink" title="推广链接"\r\n               class="listitem icon-listitem icon-shop-link arrow-right">推广链接</a>\r\n        </div>\r\n        <p class="full-padding font-small color-light-grey">设置跳转的URL地址，可以实现商户主页跳转到您设置的营销网页。</p>\r\n        <div class="section-box none-bottom">\r\n            <a href="javascript:void(0);" title="商家权限转移"\r\n               class="listitem icon-listitem icon-shop-assignment arrow-right">商家权限转移</a>\r\n        </div>\r\n        <p class="full-padding font-small color-light-grey">将商户转移到另一个联连账号进行管理，转移后该账户将恢复为普通帐号。</p>\r\n    </div>\r\n</section>\r\n<!--头部 start-->\r\n<header class="header bg-header color-white">\r\n    管理我的商家\r\n    <a href="#main" title="我的"\r\n       class="btn-icon btn-icon-left icon-back left">\r\n    </a>\r\n</header>\r\n<!--头部 end-->';
 
 }
 return __p
@@ -206,6 +206,45 @@ __e(UserCenter.getDate(CreatedAt)) +
 '</pre>\r\n            </li>\r\n            <li class="full-padding">\r\n                <label>状态</label>\r\n                <pre class="color-highlight">' +
 __e(Status.Name) +
 '</pre>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</section>\r\n<!--头部 start-->\r\n<header class="header bg-header color-white">\r\n    我的热点\r\n    <a href="#manageShop" title="管理我的商家"\r\n       class="btn-icon btn-icon-left icon-back left">\r\n    </a>\r\n    <a href="javascript:void(0)" title="维护热点信息"\r\n       class="right">\r\n        维护热点\r\n    </a>\r\n</header>\r\n<!--头部 end-->\r\n\r\n<footer class="footer bg-grey">\r\n    <a href="javascript:void(0)" title="维护热点信息"\r\n       class="btn color-white">\r\n        维护热点信息\r\n    </a>\r\n</footer>';
+
+}
+return __p
+};
+
+this["UserCenter"]["JST"]["textAdItem"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+
+
+        var className = IsEnabled ? Status.Code + ' published' : Status.Code;
+;
+__p += '\r\n<!--<li>-->\r\n    <div class="bg-white ' +
+__e(className) +
+'">\r\n        <span class="text-ad-date font-smaller color-light-grey">' +
+__e(UserCenter.getDate(CreatedAt)) +
+'</span>\r\n        <pre class="text-ad-content">' +
+__e(Content) +
+'</pre>\r\n        <span class="text-ad-state color-white font-small tcenter">' +
+__e(Status.Name) +
+'</span>\r\n        <p>\r\n            <a href="javascript:void(0);" class="btn-small btn-publish" data-id="' +
+__e(Id) +
+'">发布广告</a>\r\n            <a href="javascript:void(0);" class="btn-small btn-grey btn-unpublish" data-id="' +
+__e(Id) +
+'">取消发布</a>\r\n            <a href="javascript:void(0);" class="btn-delete btn-icon btn-icon-left icon-delete" data-id="' +
+__e(Id) +
+'"></a>\r\n        </p>\r\n    </div>\r\n<!--</li>-->';
+
+}
+return __p
+};
+
+this["UserCenter"]["JST"]["textAdList"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<section class="scroll-wrapper bg-grey">\r\n    <div class="scroller clearfix">\r\n        <ul class="text-ad-list">\r\n\r\n        </ul>\r\n    </div>\r\n</section>\r\n<!--头部 start-->\r\n<header class="header bg-header color-white">\r\n    号外广告\r\n    <a href="#manageShop" title="管理我的商家"\r\n       class="btn-icon btn-icon-left icon-back left">\r\n    </a>\r\n</header>\r\n<!--头部 end-->\r\n\r\n<footer class="footer bg-grey">\r\n    <a href="javascript:void(0)" title="添加号外广告"\r\n       class="btn color-white">\r\n        添加号外广告\r\n    </a>\r\n</footer>';
 
 }
 return __p

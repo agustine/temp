@@ -34,6 +34,12 @@ UserCenter.MainModel = Backbone.Model.extend({
     }
 });
 
+UserCenter.ItemModel = Backbone.Model.extend({});
+
+UserCenter.ItemsCollection = Backbone.Collection.extend({
+    model: UserCenter.ItemModel
+});
+
 UserCenter.BaseModel = Backbone.Model.extend({
     defaults:{
         noData: false,

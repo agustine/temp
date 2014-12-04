@@ -541,3 +541,81 @@ ul.user-list pre{
     display: block;
 }
 
+/*号外广告*/
+.text-ad-list li{
+    margin: 10px auto;
+    padding: 0 15px;
+}
+.text-ad-list li div{
+    position: relative;
+    display: block;
+    padding: 7px 15px;
+    border: 1px solid #d9dee6;
+}
+.text-ad-list pre{
+    width: 100%;
+    padding: 10px 0;
+}
+.text-ad-list li div:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+}
+.text-ad-list .text-ad-state{
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.text-ad-list .btn-delete{
+    position: absolute;
+    right: 1px;
+    bottom: 2px;
+}
+.text-ad-list li p{
+    position: relative;
+    height: 27px;
+}
+.text-ad-list li div.PendingApproval:before{
+    border-top: 40px solid #c2c2c2;
+}
+.text-ad-list li div.Approved:before{
+    border-top: 40px solid #17b989;
+}
+.text-ad-list li div.Denied:before{
+    border-top: 40px solid #434d57;
+}
+.text-ad-list li div.Approved.published:after{
+    content: "";
+    position: absolute;
+    width: 71px;
+    height: 71px;
+    left: 50%;
+    top: 50%;
+    margin-left: 15px;
+    margin-top: -35px;
+    background: url(../images/publish_seal.png) no-repeat;
+}
+
+.text-ad-list li div .btn-small{
+    display: none;
+}
+.text-ad-list li div.Approved .btn-publish{
+    display: block;
+}
+.text-ad-list li div.Approved.published .btn-unpublish{
+    display: block;
+}
+.text-ad-list li div.Approved.published .btn-publish{
+    display: none;
+}

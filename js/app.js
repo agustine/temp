@@ -41,7 +41,7 @@ $(function(){
      * 完成后执行回调
      * @param instanceKey 实例标识
      * @param modelName 模型名称
-     * @param callback 回调桉树
+     * @param callback 回调函数
      */
     function checkModel(instanceKey, modelName, callback){
         var ThisModel = UserCenter[modelName];
@@ -55,6 +55,29 @@ $(function(){
             UserCenter[instanceKey] = new ThisModel();
             // 获取商户数据
             UserCenter[instanceKey].load();
+        }
+        // 执行回调
+        callback && callback();
+    }
+
+    /**
+     * 检查指定集合实例是否初始化
+     * 如果没有初始化则初始化
+     * 完成后执行回调
+     * @param instanceKey 实例标识
+     * @param modelName 集合名称
+     * @param callback 回调函数
+     */
+    function checkCollection(instanceKey, modelName, callback){
+        var ThisModel = UserCenter[modelName];
+        // 不能存在指定模型定义
+        if(!ThisModel){
+            return;
+        }
+        // 实例不存在
+        if(!(instanceKey in UserCenter)){
+            // 初始化商户主模型
+            UserCenter[instanceKey] = new ThisModel();
         }
         // 执行回调
         callback && callback();
@@ -117,7 +140,8 @@ $(function(){
             'visitors': 'visitors', // 访客列表
             'collectors': 'collectors', // 收藏我的用户
             'shopWifis': 'shopWifis', //  我的热点
-            'manageShopLink': 'manageShopLink' // 推广链接
+            'manageShopLink': 'manageShopLink', // 推广链接
+            'manageTextAds': 'manageTextAds'
         },
 
         /**
@@ -319,6 +343,21 @@ $(function(){
                     UserCenter.manageShopLinkView = new UserCenter.ManageShopLinkView({model:UserCenter[instanceKey]});
                 }else{
                     UserCenter.manageShopLinkView.show();
+                }
+            });
+        },
+
+        /**
+         * 文字号外广告
+         */
+        manageTextAds: function(){
+            var instanceKey = 'textAdItemsCollection';
+            var modelName = 'ItemsCollection';
+            checkCollection(instanceKey, modelName, function(){
+                if(!UserCenter.textAdsView) {
+                    UserCenter.textAdsView = new UserCenter.TextAdsView({collection: UserCenter[instanceKey]});
+                }else{
+                    UserCenter.textAdsView.show();
                 }
             });
         }
